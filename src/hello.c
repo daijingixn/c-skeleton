@@ -29,5 +29,5 @@ int main(void) {
     }while(a!='#');
 }
 
-    Status API Training Shop Blog About Pricing 
+ 
 
