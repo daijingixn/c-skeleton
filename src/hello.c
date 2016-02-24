@@ -76,8 +76,10 @@ void delete(char *filename)/*删除通讯录中的信息*/{
 				printf("确定要删除信息吗?如果确定，请输入1，不确定请输入2\n");
 				scanf("%d",&a);
 				if(a==1)
-				for(j=i;j<100;j++)
+				for(j=i;j<100;j++){
 					s[j]=s[j+1];
+					s[j].number=j+1;
+						}
 					}
 				}
 		}
@@ -93,8 +95,10 @@ void delete(char *filename)/*删除通讯录中的信息*/{
 				printf("确定要删除信息吗?如果确定，请输入1，不确定请输入2\n");
 				scanf("%d",&a);
 				if(a==1)
-				for(j=i;j<100;j++)
+				for(j=i;j<100;j++){
 					s[j]=s[j+1];
+					s[j].number=j+1;
+						}
 					}									
 				}
 		}
@@ -109,8 +113,10 @@ void delete(char *filename)/*删除通讯录中的信息*/{
 				printf("确定要删除信息吗?如果确定，请输入1，不确定请输入2\n");
 				scanf("%d",&a);
 				if(a==1)
-				for(j=i;j<100;j++)
+				for(j=i;j<100;j++){
 					s[j]=s[j+1];
+					s[j].number=j+1;
+						}
 					}
 					}
 			}
