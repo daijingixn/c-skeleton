@@ -1,9 +1,30 @@
 #include "stdio.h"
 #include<stdlib.h>
+typedef struct man{
+	int number;
+	char name[10];
+	long telephonenumber;
+	int label;
+	}MAN;
 void find(){}/*查找通讯录中的信息*/
 void delete(){}/*删除通讯录中的信息*/
 void add(){}/*向通讯录中添加信息*/
-void print(){}/*打印出通讯录中的所有信息*/
+void print(*filename)/*打印出通讯录中的所有信息*/
+{FILE *fp;
+int i,j;
+MAN s[100],t;
+fp=fopen(filename,"rb");
+fread(s,sizeof(MAN),100,fp);
+fclose(fp);
+for(i=0;i<100;i++){
+    if(s[i].label!=1)break;
+	printf("%d\n",s[i].number);
+	for(j=0;s[i].name[j];j++)
+		printf("%c",s[i].name[j]);
+	printf("\n");
+printf("电话号码：%ld\n",s[i].telephonenumber);
+                    }
+}
 void change(){}/*编辑通讯录中的信息*/
 int main(void) {
     char a;/*使用do while循环体可以进行多次操作*/
@@ -18,7 +39,7 @@ int main(void) {
         } else if(a=='3') {
             add();
         } else if(a=='4') {
-            print();
+            print("daijingxin.txt");
         } else if(a=='5') {
             change();
         } else if(a=='#') {
