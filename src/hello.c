@@ -6,9 +6,56 @@ typedef struct man{
 	long telephonenumber;
 	int label;
 	}MAN;
-void find(){}/*查找通讯录中的信息*/
-void delete(){}/*删除通讯录中的信息*/
-void add(){}/*向通讯录中添加信息*/
+void dayinxinxi(MAN xinxi){
+	int j;
+	printf("%d\n",xinxi.number);
+	for(j=0;xinxi.name[j];j++)
+		printf("%c",xinxi.name[j]);
+	printf("\n");
+	printf("电话号码：%ld\n",xinxi.telephonenumber);
+	}
+void find(char *filename)/*查找通讯录中的信息*/{
+	FILE *fp;
+	int i,j,x,y;
+	long dianhua;
+	char xingming[10];
+	MAN s[100],t;
+	fp=fopen(filename,"rb");
+	fread(s,sizeof(MAN),100,fp);
+	fclose(fp);
+	printf("请选择你的查询方式。1为输入编号查询，2为输入姓名查询，3为输入电话号码查询。\n");
+	scanf("%d",&x);
+	if(x==1){
+		printf("请输入编号\n");
+		scanf("%d",&y);
+		for(i=0;i<100;i++){
+			if(s[i].label==0)break;
+			if(s[i].number==y){
+				dayinxinxi(s[i]);
+					}
+				}
+		}
+	else if(x==2){
+		printf("请输入联系人姓名\n");
+		scanf("%s",xingming);
+		getchar();
+		for(i=0;i<100;i++){
+			if(s[i].label==0)break;
+			if (strcmp(s[i].name,xingming)==0)dayinxinxi(s[i]);
+				}
+		}
+	else if(x==3){
+		printf("请输入联系人的电话\n");
+		scanf("%ld",&dianhua);
+		for(i=0;i<100;i++){
+			if(s[i].label==0)break;
+			if (dianhua==s[i].telephonenumber)dayinxinxi(s[i]);
+					}
+			}
+	else printf("请输入正确的数字");
+}
+void delete(char *filename){}/*删除通讯录中的信息*/
+void add(char *filename){}/*向通讯录中添加信息*/
 void print(char *filename)/*打印出通讯录中的所有信息*/
 {FILE *fp;
 int i,j;
@@ -25,7 +72,7 @@ for(i=0;i<100;i++){
 printf("电话号码：%ld\n",s[i].telephonenumber);
                     }
 }
-void change(){}/*编辑通讯录中的信息*/
+void change(char *filename){}/*编辑通讯录中的信息*/
 int main(void) {
     char a;/*使用do while循环体可以进行多次操作*/
     do{/*通过输入数字来表达想要实现的功能*/
@@ -33,7 +80,7 @@ int main(void) {
         scanf("%c",&a);/*在输入完字符后按下回车键，此时会产生多余的回车符，用getchar函数把回车符提走*/
         getchar();
         if(a=='1') {
-            find();
+            find("information.txt");
         } else if(a=='2') {
             delete();
         } else if(a=='3') {
