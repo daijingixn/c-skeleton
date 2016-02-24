@@ -54,7 +54,71 @@ void find(char *filename)/*查找通讯录中的信息*/{
 			}
 	else printf("请输入正确的数字");
 }
-void delete(char *filename){}/*删除通讯录中的信息*/
+void delete(char *filename)/*删除通讯录中的信息*/{
+	FILE *fp;
+	int i,j,x,y,a;
+	long dianhua;
+	char xingming[10];
+	MAN s[100],t;
+	fp=fopen(filename,"rb");
+	fread(s,sizeof(MAN),100,fp);
+	fclose(fp);
+	printf("请选择你的删除方式。1为输入编号删除，2为输入姓名删除，3为输入电话号码删除。\n");
+	scanf("%d",&x);
+	if(x==1){
+		printf("请输入编号\n");
+		scanf("%d",&y);
+		for(i=0;i<100;i++){
+			if(s[i].label==0)break;
+			if(s[i].number==y){
+				printf("以下是你想要删除的信息\n");
+				dayinxinxi(s[i]);
+				printf("确定要删除信息吗?如果确定，请输入1，不确定请输入2\n");
+				scanf("%d",&a);
+				if(a==1)
+				for(j=i;j<100;j++)
+					s[j]=s[j+1];
+					}
+				}
+		}
+	else if(x==2){
+		printf("请输入联系人姓名\n");
+		scanf("%s",xingming);
+		getchar();
+		for(i=0;i<100;i++){
+			if(s[i].label==0)break;
+			if (strcmp(s[i].name,xingming)==0){
+				printf("以下是你想要删除的信息\n");
+				dayinxinxi(s[i]);
+				printf("确定要删除信息吗?如果确定，请输入1，不确定请输入2\n");
+				scanf("%d",&a);
+				if(a==1)
+				for(j=i;j<100;j++)
+					s[j]=s[j+1];
+					}									
+				}
+		}
+	else if(x==3){
+		printf("请输入联系人的电话\n");
+		scanf("%ld",&dianhua);
+		for(i=0;i<100;i++){
+			if(s[i].label==0)break;
+			if (dianhua==s[i].telephonenumber){
+				printf("以下是你想要删除的信息\n");
+				dayinxinxi(s[i]);
+				printf("确定要删除信息吗?如果确定，请输入1，不确定请输入2\n");
+				scanf("%d",&a);
+				if(a==1)
+				for(j=i;j<100;j++)
+					s[j]=s[j+1];
+					}
+					}
+			}
+	else printf("请输入正确的数字");
+	fp=fopen(filename,"wb");
+	fwrite(s,sizeof(MAN),100,fp);
+	fclose(fp);
+	}
 void add(char *filename){}/*向通讯录中添加信息*/
 void print(char *filename)/*打印出通讯录中的所有信息*/
 {FILE *fp;
