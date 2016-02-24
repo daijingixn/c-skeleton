@@ -39,7 +39,7 @@ int main(void) {
         } else if(a=='3') {
             add();
         } else if(a=='4') {
-            print("daijingxin.txt");
+            print("information.txt");
         } else if(a=='5') {
             change();
         } else if(a=='#') {
