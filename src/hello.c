@@ -9,7 +9,7 @@ typedef struct man{
 void find(){}/*查找通讯录中的信息*/
 void delete(){}/*删除通讯录中的信息*/
 void add(){}/*向通讯录中添加信息*/
-void print(*filename)/*打印出通讯录中的所有信息*/
+void print(char *filename)/*打印出通讯录中的所有信息*/
 {FILE *fp;
 int i,j;
 MAN s[100],t;
