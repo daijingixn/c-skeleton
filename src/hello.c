@@ -1,20 +1,20 @@
 #include "stdio.h"
 #include<stdlib.h>
 typedef struct man{
-	int number;
-	char name[10];
-	long telephonenumber;
-	int label;
-	}MAN;
+	int number;/*编号*/
+	char name[10];/*姓名*/
+	long telephonenumber;/*电话号码*/
+	int label;/*标签，在添加联系人信息时起到作用。最多存放100个联系人，已经有信息储存的此项为1，没有则为0*/
+	}MAN;/*定义通讯录中的每个联系人为结构体形式*/
 
-void dayinxinxi(MAN xinxi){
+void dayinxinxi(MAN xinxi){/*通过哦这个函数，配合for循环打印出所有联系人信息，也可打印单个联系人信息*/
 	int j;
 	printf("%d\n",xinxi.number);
 	for(j=0;xinxi.name[j];j++)
 		printf("%c",xinxi.name[j]);
 	printf("\n");
 	printf("电话号码：%ld\n",xinxi.telephonenumber);
-}
+                          }
 
 
 
@@ -24,20 +24,20 @@ void find(char *filename)/*查找通讯录中的信息*/{
 	long dianhua;
 	char xingming[10];
 	MAN s[100],t;
-	fp=fopen(filename,"rb");
+	fp=fopen(filename,"rb");/*从储存数据的文件中提取数据*/
 	fread(s,sizeof(MAN),100,fp);
 	fclose(fp);
-	printf("请选择你的查询方式。1为输入编号查询，2为输入姓名查询，3为输入电话号码查询。\n");
+	printf("请选择你的查询方式。1为输入编号查询，2为输入姓名查询，3为输入电话号码查询。\n");/*因为联系人信息有三项，所以可以采用三种不同方式*/
 	scanf("%d",&x);
 	if(x==1){
 		printf("请输入编号\n");
 		scanf("%d",&y);
-		for(i=0;i<100;i++){
+		for(i=0;i<100;i++){/*通过for循环依次寻找正确信息*/
 			if(s[i].label==0)break;
 			if(s[i].number==y){
 				dayinxinxi(s[i]);
-					}
-				}
+					  }
+				  }
 		}
 	else if(x==2){
 		printf("请输入联系人姓名\n");
@@ -54,8 +54,8 @@ void find(char *filename)/*查找通讯录中的信息*/{
 		for(i=0;i<100;i++){
 			if(s[i].label==0)break;
 			if (dianhua==s[i].telephonenumber)dayinxinxi(s[i]);
-					}
-			}
+				  }
+		     }
 	else printf("请输入正确的数字");
 }
 void delete(char *filename)/*删除通讯录中的信息*/{
@@ -80,7 +80,7 @@ void delete(char *filename)/*删除通讯录中的信息*/{
 				printf("确定要删除信息吗?如果确定，请输入1，不确定请输入2\n");
 				scanf("%d",&a);
 				if(a==1)
-				for(j=i;j<100;j++){
+				for(j=i;j<100;j++){/*通过for循环依次改变原本的联系人顺序，以此删除信息*/
 					s[j]=s[j+1];
 					s[j].number=j+1;
 						}
